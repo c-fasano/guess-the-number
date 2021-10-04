@@ -12,9 +12,9 @@ const game = {
   },
     do {
       //need to push guesses(getGuess) into empty array
-      prevGuesses.push      (getGuess) 
+      this.prevGuesses.push(this.getGuess) 
       //render after guess has been made
-      render
+      this.render
       //condition regarding the guesses 
     } while (condition);
 
@@ -32,20 +32,25 @@ const game = {
     while (isNaN(guess) || guess >= smallestNum || guess <= biggestNum) {
       //parseInt?
       //prompt user to enter a number 
-    }
+    x = parseInt((prompt `Enter a guess between ${smallestNum} and ${biggestNum}`)
+    )}
+    return guess
   },
-  return guess
+
+
 
 
 
   render = function() {
-//IF secret number is guessed: display congratulations message and how many guesses it took the user to complete the game
+    //IF secret number is guessed: display congratulations message and how many guesses it took the user to complete the game
 //or ELSE it will display a message saying whether the number is too high or low
       //use template literal
-
-
-
-
+    if (this.prevGuesses > this.secretNum){
+      return (`Your guess is too high. Previous guesses:` ${this.prevGuesses})
+    }
+    if (this.guess < this.secretNum){
+      return (`Your guess is too low. Previous guesses:` ${prevGuesses})
+    }
   },
 }
 
