@@ -5,53 +5,49 @@ const game = {
   biggestNum: 10,
   smallestNum: 1,
   secretNum: null,
+  prevGuesses = [], //create a variable where the new data (user's guesses will be stored)
   play: function() {
-  prevGuesses = [] //create a variable where the new data (user's guesses will be stored)
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
-  },
+  
     do {
       //need to push guesses(getGuess) into empty array
-      this.prevGuesses.push(this.getGuess) 
+      this.prevGuesses.push(this.getGuess())
       //render after guess has been made
-      this.render
+      this.render()
       //condition regarding the guesses 
-    } while (condition);
+    } while ( this.prevGuesses[this.prevGuesses.length - 1] !== this.secretNum)
+  },
 
 
 
   //defing functions getGuess and render
-  getGuess = function() {
+  getGuess() {
     //variable for guess
-    let guess = x
     // 1) prompt a user to enter a guess between smallest and biggest
-    // 2) value of guesses need to be checked to see if typeof = integer
-    // 3) if typeof = integer - push guess into prevGuesses array
-    // Great place for a do or do while loop 
-    //Guess can be NaN, >= smallest, or <= biggest 
+    let guess = parseInt((prompt `Enter a guess between ${smallestNum} and ${biggestNum}, Incorrect guesses: ${this.prevGuesses}`))
+    // 2) Guess can be NaN, >= smallest, or <= biggest 
     while (isNaN(guess) || guess >= smallestNum || guess <= biggestNum) {
-      //parseInt?
-      //prompt user to enter a number 
-    x = parseInt((prompt `Enter a guess between ${smallestNum} and ${biggestNum}`)
-    )}
+      // 3) parseInt wit a different prompt related to the variable guess being outside of the established range
+      guess = parseInt((prompt `I think you skimmed the rules instead of reading them. Your guess must be between ${this.smallestNum} and ${this.biggestNum}.Now, have another go.`))
     return guess
-  },
+    }
+  },  
 
 
 
-
-
-  render = function() {
+  render() {
     //IF secret number is guessed: display congratulations message and how many guesses it took the user to complete the game
 //or ELSE it will display a message saying whether the number is too high or low
       //use template literal
-    if (this.prevGuesses > this.secretNum){
-      return (`Your guess is too high. Previous guesses:` ${this.prevGuesses})
+    if (this.prevGuesses[this.prevGuesses.length - 1] > this.secretNum) {
+      alert (`Your guess is too high, please try again. Previous guesses: ${this.prevGuesses.join(", ")}`)
+    } else if (this.prevGuesses[this.prevGuesses.length - 1] < this.secretNum) {
+      alert (`Your guess is too low, please try again Previous guesses: ${this.prevGuesses.join(", ")}`)
+    } else if (this.prevGuesses[this.prevGuesses.length - 1] > this.secretNum) {
+      alert(`You made like a hammer and nailed it! Your guess was the secret number ${this.secretNum}. Your guesses this time were ${this.prevGuesses.length}`)
     }
-    if (this.guess < this.secretNum){
-      return (`Your guess is too low. Previous guesses:` ${prevGuesses})
-    }
-  },
+  }
 }
 
 //PLAY
