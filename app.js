@@ -2,7 +2,7 @@
 
 const game = {
   title: 'Guess the Number!',
-  biggestNum: 10,
+  biggestNum: 25,
   smallestNum: 1,
   secretNum: null,
   prevGuesses: [], 
@@ -26,11 +26,11 @@ const game = {
   getGuess() {
     //variable for guess
     // 1) prompt a user to enter a guess between smallest and biggest
-    let guess = parseInt((prompt `Enter a guess between ${this.smallestNum} and ${this.biggestNum}, Incorrect guesses: ${this.prevGuesses}`))
+    let  guess = parseInt(prompt (`Enter a guess between ${this.smallestNum} and ${this.biggestNum}, Incorrect guesses: ${this.prevGuesses}`))
     // 2) Guess can be NaN, >= smallest, or <= biggest 
     while (isNaN(guess) || guess >= this.smallestNum || guess <= this.biggestNum) {
       // 3) parseInt wit a different prompt related to the variable guess being outside of the established range
-      guess = parseInt((prompt `I think you skimmed the rules instead of reading them. Your guess must be between ${this.smallestNum} and ${this.biggestNum}.Now, have another go.`))
+      // guess = parseInt(prompt (`I think you skimmed the rules instead of reading them. Your guess must be between ${this.smallestNum} and ${this.biggestNum}.Now, have another go.`))
     return guess
     }
   },  
@@ -45,10 +45,10 @@ const game = {
       alert (`Your guess is too high, please try again. Previous guesses: ${this.prevGuesses.join(", ")}`)
     } else if (this.prevGuesses[this.prevGuesses.length - 1] < this.secretNum) {
       alert (`Your guess is too low, please try again Previous guesses: ${this.prevGuesses.join(", ")}`)
-    } else if (this.prevGuesses[this.prevGuesses.length - 1] > this.secretNum) {
-      alert(`You made like a hammer and nailed it! Your guess was the secret number ${this.secretNum}. Your guesses this time were ${this.prevGuesses.length}`)
+    } else if (this.prevGuesses[this.prevGuesses.length - 1] === this.secretNum) {
+      alert(`You made like a hammer and nailed it! Your guess was the secret number ${this.secretNum}. Your guesses this time were ${this.prevGuesses}`)
     }
-  }
+  },
 }
 
 //PLAY
