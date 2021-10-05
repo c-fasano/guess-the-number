@@ -28,11 +28,10 @@ const game = {
     // 1) prompt a user to enter a guess between smallest and biggest
     let  guess = parseInt(prompt (`Enter a guess between ${this.smallestNum} and ${this.biggestNum}, Incorrect guesses: ${this.prevGuesses}`))
     // 2) Guess can be NaN, >= smallest, or <= biggest 
-    while (isNaN(guess) || guess >= this.smallestNum || guess <= this.biggestNum) {
+    while (isNaN(guess) || guess < this.smallestNum || guess > this.biggestNum) {
       // 3) parseInt wit a different prompt related to the variable guess being outside of the established range
-      // guess = parseInt(prompt (`I think you skimmed the rules instead of reading them. Your guess must be between ${this.smallestNum} and ${this.biggestNum}.Now, have another go.`))
-    return guess
-    }
+      guess = parseInt(prompt (`I think you skimmed the rules instead of reading them. Your guess must be between ${this.smallestNum} and ${this.biggestNum}.Now, have another go.`))
+    }return guess
   },  
 
 
